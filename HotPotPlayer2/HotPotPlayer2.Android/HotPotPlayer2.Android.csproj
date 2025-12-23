@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFrameworks>net9.0-android</TargetFrameworks>
+		<RuntimeIdentifiers>android-arm;android-arm64;android-x86;android-x64</RuntimeIdentifiers>
+        <SupportedOSPlatformVersion>21</SupportedOSPlatformVersion>
+        <Nullable>enable</Nullable>
+        <ApplicationTitle>HotPotPlayer2</ApplicationTitle>
+        <ApplicationId>com.dayu.HotPotPlayer2</ApplicationId>
+        <ApplicationVersion>1</ApplicationVersion>
+        <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+        <AndroidPackageFormat>apk</AndroidPackageFormat>
+        <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
+		<AndroidCreatePackagePerAbi>True</AndroidCreatePackagePerAbi>
+	</PropertyGroup>
+
+    <ItemGroup>
+        <AndroidResource Include="Icon.png">
+            <Link>Resources\drawable\Icon.png</Link>
+        </AndroidResource>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Avalonia.Android" />
+        <PackageReference Include="Xamarin.AndroidX.Core.SplashScreen" />
+    </ItemGroup>
+
+    <ItemGroup>
+		<ProjectReference Include="..\HotPotPlayer2\HotPotPlayer2.csproj" />
+	</ItemGroup>
+</Project>

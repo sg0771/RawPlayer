@@ -1,0 +1,299 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:vm="using:HotPotPlayer2.ViewModels"
+			 xmlns:conv="using:HotPotPlayer2.Converters"
+			 xmlns:cont="using:HotPotPlayer2.Controls"
+			 xmlns:jmodel="using:Jellyfin.Sdk.Generated.Models"
+			 xmlns:local="using:HotPotPlayer2.Views.Pages"
+			 xmlns:ext="using:HotPotPlayer2.Extensions"
+			 xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 x:DataType="vm:MusicPageViewModel"
+             x:Class="HotPotPlayer2.Views.Pages.Music">
+	<Design.DataContext>
+		<vm:MusicPageViewModel />
+	</Design.DataContext>
+
+	<UserControl.Resources>
+		<DataTemplate x:Key="AlbumCardViewTemplate" x:DataType="jmodel:BaseItemDto">
+			<Grid x:Name="TemplateRoot"
+				    Width="170" 
+					Background="White" 
+					Margin="8">
+
+				<Button Classes="CardTransparentButton"  
+						CornerRadius="4"
+						Click="AlbumClick"
+						Tag="{Binding }">
+					<Grid Margin="0,0,0,12" ClipToBounds="True">
+						<StackPanel Spacing="8">
+							<Image
+								asyncImageLoader:ImageLoader.Source="{Binding, Converter={x:Static conv:JellyfinImageConverters.PrimaryImage}}"
+								Width="170"
+								Height="170"
+								Stretch="UniformToFill"
+								VerticalAlignment="Center"
+								HorizontalAlignment="Center"/>
+							<TextBlock
+								Margin="8,0"
+								Text="{Binding Name}"
+								FontSize="14"
+								MaxLines="2"
+								TextTrimming="CharacterEllipsis"
+								TextWrapping="Wrap"
+								Height="40"
+								ToolTip.Tip="{Binding Name}"
+								FontFamily="{DynamicResource MiSansBold}"/>
+							<TextBlock
+								Margin="8,0"
+								Text="{Binding AlbumArtist}"
+								Foreground="Gray"
+								ToolTip.Tip="{Binding AlbumArtist}"
+								FontFamily="{DynamicResource MiSansRegular}"/>
+							<TextBlock
+								Margin="8,0"
+								Text="{Binding ProductionYear}"
+								Foreground="Gray"
+								ToolTip.Tip="{Binding ProductionYear}"
+								FontSize="14"/>
+						</StackPanel>
+						<Grid x:Name="HiddenContent" IsVisible="False">
+							<Button Classes="SemiTransparentButton"
+									HorizontalAlignment="Center"
+									Padding="12"
+									Margin="0,-70,0,0"
+									CornerRadius="32"
+									Width="48" Height="48"
+									Click="PlayAlbumClick"
+									Tag="{Binding }">
+								<Label Classes="LabelIcon" Content="&#xE768;" FontSize="20"/>
+							</Button>
+							<StackPanel
+								Margin="0,0,8,0"
+								HorizontalAlignment="Right"
+								VerticalAlignment="Bottom"
+								Orientation="Horizontal"
+								Spacing="8"
+								Background="White">
+								<Button Classes="TransparentButton" Foreground="Gray" >
+									<Label Classes="LabelIcon" Content="&#xE734;" FontSize="18"/>
+								</Button>
+								<Button Classes="TransparentButton" Foreground="Gray" >
+									<Label Classes="LabelIcon" Content="&#xE712;" FontSize="18"/>
+								</Button>
+							</StackPanel>
+						</Grid>
+					</Grid>
+				</Button>
+
+				<Grid.Transitions>
+					<Transitions>
+						<TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.3" Easing="QuarticEaseOut"/>
+					</Transitions>
+				</Grid.Transitions>
+
+				<Interaction.Behaviors>
+					<EventTriggerBehavior EventName="PointerEntered">
+						<ChangePropertyAction TargetObject="{Binding #HiddenContent}" PropertyName="IsVisible" Value="True" />
+						<ChangePropertyAction TargetObject="{Binding #TemplateRoot}" PropertyName="RenderTransform" Value="scale(1.1)" />
+					</EventTriggerBehavior>
+					<EventTriggerBehavior EventName="PointerExited">
+						<ChangePropertyAction TargetObject="{Binding #HiddenContent}" PropertyName="IsVisible" Value="False" />
+						<ChangePropertyAction TargetObject="{Binding #TemplateRoot}" PropertyName="RenderTransform" Value="scale(1)" />
+					</EventTriggerBehavior>
+				</Interaction.Behaviors>
+			</Grid>
+		</DataTemplate>
+		<DataTemplate x:Key="PlayListCardViewTemplate" x:DataType="jmodel:BaseItemDto">
+			<Grid x:Name="TemplateRoot"
+					Width="170"
+					Background="White"
+					Margin="8">
+
+				<Button Classes="CardTransparentButton"
+						CornerRadius="4"
+						Click="PlayListClick"
+						Tag="{Binding }">
+					<Grid Margin="0,0,0,12" ClipToBounds="True">
+						<StackPanel Spacing="8">
+							<Image
+								asyncImageLoader:ImageLoader.Source="{Binding, Converter={x:Static conv:JellyfinImageConverters.PrimaryImage}}"
+								Width="170"
+								Height="170"
+								Stretch="UniformToFill"
+								VerticalAlignment="Center"
+								HorizontalAlignment="Center"/>
+							<TextBlock
+								Margin="8,0"
+								Text="{Binding Name}"
+								FontSize="14"
+								MaxLines="2"
+								TextTrimming="CharacterEllipsis"
+								TextWrapping="Wrap"
+								Height="40"
+								ToolTip.Tip="{Binding Name}"
+								FontFamily="{DynamicResource MiSansBold}"/>
+						</StackPanel>
+						<Grid x:Name="HiddenContent" IsVisible="False">
+							<Button Classes="SemiTransparentButton"
+									HorizontalAlignment="Center"
+									Padding="12"
+									Margin="0,-70,0,0"
+									CornerRadius="32"
+									Width="48" Height="48"
+									Click="PlayPlayListClick"
+									Tag="{Binding }">
+								<Label Classes="LabelIcon" Content="&#xE768;" FontSize="20"/>
+							</Button>
+							<StackPanel
+								Margin="0,0,8,0"
+								HorizontalAlignment="Right"
+								VerticalAlignment="Bottom"
+								Orientation="Horizontal"
+								Spacing="8"
+								Background="White">
+								<Button Classes="TransparentButton" Foreground="Gray" >
+									<Label Classes="LabelIcon" Content="&#xE734;" FontSize="18"/>
+								</Button>
+								<Button Classes="TransparentButton" Foreground="Gray" >
+									<Label Classes="LabelIcon" Content="&#xE712;" FontSize="18"/>
+								</Button>
+							</StackPanel>
+						</Grid>
+					</Grid>
+				</Button>
+
+				<Grid.Transitions>
+					<Transitions>
+						<TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.3" Easing="QuarticEaseOut"/>
+					</Transitions>
+				</Grid.Transitions>
+
+				<Interaction.Behaviors>
+					<EventTriggerBehavior EventName="PointerEntered">
+						<ChangePropertyAction TargetObject="{Binding #HiddenContent}" PropertyName="IsVisible" Value="True" />
+						<ChangePropertyAction TargetObject="{Binding #TemplateRoot}" PropertyName="RenderTransform" Value="scale(1.1)" />
+					</EventTriggerBehavior>
+					<EventTriggerBehavior EventName="PointerExited">
+						<ChangePropertyAction TargetObject="{Binding #HiddenContent}" PropertyName="IsVisible" Value="False" />
+						<ChangePropertyAction TargetObject="{Binding #TemplateRoot}" PropertyName="RenderTransform" Value="scale(1)" />
+					</EventTriggerBehavior>
+				</Interaction.Behaviors>
+			</Grid>
+		</DataTemplate>
+	</UserControl.Resources>
+
+	<Grid Margin="36,28,0,0">
+
+		<TabControl SelectionChanged="TabSelectionChanged">
+			<TabItem Header="专辑" Tag="Album">
+				<ScrollViewer Margin="-8,0,-10,0" ScrollChanged="OnAlbumListScrollChanged">
+					<ItemsRepeater x:Name="AlbumGridView"
+								   ItemsSource="{Binding JellyfinAlbumList}"
+								   Classes="CardGridView"
+							       ItemTemplate="{StaticResource AlbumCardViewTemplate}">
+					</ItemsRepeater>
+				</ScrollViewer>
+			</TabItem>
+			<TabItem Header="播放列表" Tag="PlayList">
+				<ScrollViewer Margin="-8,0,-10,0" ScrollChanged="OnPlayListListScrollChanged">
+					<ItemsRepeater x:Name="PlayListGridView"
+								   ItemsSource="{Binding JellyfinPlayListList}"
+								   Classes="CardGridView"
+							       ItemTemplate="{StaticResource PlayListCardViewTemplate}">
+					</ItemsRepeater>
+				</ScrollViewer>
+			</TabItem>
+			<TabItem Header="艺术家" Tag="Artist">
+			</TabItem>
+			<TabItem Header="歌曲" Tag="Song">
+			</TabItem>
+		</TabControl>
+
+		<StackPanel VerticalAlignment="Center" 
+					HorizontalAlignment="Center" 
+					Spacing="16" 
+					IsVisible="{Binding NoJellyfinVisible}">
+			<Label Classes="LabelIcon" FontSize="60" Content="&#xE977;" />
+			<TextBlock FontSize="20" Text="尚未添加Jellyfin服务器，请在设置页面添加" FontFamily="{StaticResource MiSansRegular}"/>
+		</StackPanel>
+
+		<Grid x:Name="AlbumPopupOverlay" 
+			  Margin="-36,-28,0,0" 
+			  HorizontalAlignment="Stretch" 
+			  VerticalAlignment="Stretch"
+		      Background="#50000000"
+			  IsVisible="False"
+			  ext:InteractiveExtensions.IsVisible="{Binding AlbumPopupOverlayVisible}"
+			  Tapped="AlbumPopupOverlay_Tapped"
+			  Opacity="{Binding AlbumPopupOverlayVisible, Converter={x:Static local:MusicConverters.GetPopupOpacity}}"
+			  >
+
+			<Grid.Transitions>
+				<Transitions>
+					<DoubleTransition Property="Opacity" Duration="0:0:0.2" />
+				</Transitions>
+			</Grid.Transitions>
+
+			<cont:AlbumPopup x:Name="AlbumPopupTarget"
+							 Margin="0,-32,0,0"
+						     Tapped="SuppressTap"
+							 RenderTransform="scale(0.9)"
+							 ext:InteractiveExtensions.ShowTransform="scale(1)"
+							 ext:InteractiveExtensions.HideTransform="scale(0.9)"
+							 ext:InteractiveExtensions.IsVisible="{Binding AlbumPopupOverlayVisible}"
+							 Album="{Binding SelectedAlbum}"
+							 AlbumInfo="{Binding SelectedAlbumInfo}"
+							 AlbumMusicItems="{Binding SelectedAlbumMusicItems}"
+							 OnAlbumPlayClick="PlayAlbumClick"
+							 OnMusicPlayClick="MusicItemClick"
+							 >
+				<cont:AlbumPopup.Transitions>
+					<Transitions>
+						<TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.4" Easing="BackEaseInOut"/>
+					</Transitions>
+				</cont:AlbumPopup.Transitions>
+			</cont:AlbumPopup>
+		</Grid>
+
+		<Grid x:Name="PlayListPopupOverlay"
+			  Margin="-36,-28,0,0"
+			  HorizontalAlignment="Stretch"
+			  VerticalAlignment="Stretch"
+		      Background="#50000000"
+			  IsVisible="false"
+			  ext:InteractiveExtensions.IsVisible="{Binding PlayListPopupOverlayVisible}"
+			  Tapped="PlayListPopupOverlay_Tapped"
+			  Opacity="{Binding PlayListPopupOverlayVisible, Converter={x:Static local:MusicConverters.GetPopupOpacity}}">
+			<Grid.Transitions>
+				<Transitions>
+					<DoubleTransition Property="Opacity" Duration="0:0:0.2" />
+				</Transitions>
+			</Grid.Transitions>
+
+			<cont:PlayListPopup x:Name="PlayListPopupTarget"
+							    Margin="0,-32,0,0"
+						        Tapped="SuppressTap"
+								RenderTransform="scale(0.9)"
+								ext:InteractiveExtensions.ShowTransform="scale(1)"
+								ext:InteractiveExtensions.HideTransform="scale(0.9)"
+								ext:InteractiveExtensions.IsVisible="{Binding PlayListPopupOverlayVisible}"
+						        PlayList="{Binding SelectedPlayList}"
+						        PlayListInfo="{Binding SelectedPlayListInfo}"
+						        PlayListMusicItems="{Binding SelectedPlayListMusicItems}"
+						        OnPlayListPlayClick="PlayPlayListClick"
+							    OnMusicPlayClick="PlayListMusicItemClick"
+							    >
+
+				<cont:PlayListPopup.Transitions>
+					<Transitions>
+						<TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.4" Easing="BackEaseInOut"/>
+					</Transitions>
+				</cont:PlayListPopup.Transitions>
+			</cont:PlayListPopup>
+		</Grid>
+	</Grid>
+	
+</UserControl>

@@ -1,0 +1,253 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Design.PreviewWith>
+    <Border Padding="20">
+		<!-- Add Controls for Previewer Here -->
+		<StackPanel Background="Gray">
+			<Button Classes="WhiteTransparentButton">
+				<Label Classes="LabelIcon" Content="&#xE72C;" />
+			</Button>
+		</StackPanel>
+    </Border>
+  </Design.PreviewWith>
+
+	<!-- Add Styles Here -->
+	<Style Selector="Button.MainNavButton">
+		<Setter Property="Width" Value="48" />
+		<Setter Property="Height" Value="40" />
+		<Setter Property="Padding" Value="0,1,0,0" />
+		<Setter Property="HorizontalAlignment" Value="Center" />
+		<Setter Property="VerticalAlignment" Value="Center" />
+		<Setter Property="Background" Value="Transparent"/>
+	</Style>
+	<Style Selector="Button.MainNavButton:pointerover /template/ ContentPresenter">
+		<Setter Property="Background" Value="#DEE3EE"/>
+	</Style>
+	<Style Selector="Button.MainNavButton:disabled /template/ ContentPresenter">
+		<Setter Property="Foreground" Value="#5843be"/>
+		<Setter Property="Background" Value="#d1d6e1"/>
+	</Style>
+
+	<Style Selector="Button.TransparentButton">
+		<Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+		<Setter Property="Padding" Value="0" />
+	</Style>
+
+	<Style Selector="Button.WhiteTransparentButton">
+		<Setter Property="Background" Value="Transparent" />
+		<Setter Property="Foreground" Value="White"/>
+		<Setter Property="Padding" Value="0" />
+		<Setter Property="BorderThickness" Value="0" />
+	</Style>
+	<Style Selector="Button.WhiteTransparentButton:pointerover /template/ ContentPresenter">
+		<Setter Property="Foreground" Value="White"/>
+		<Setter Property="Background" Value="#40ffffff" />
+	</Style>
+	<Style Selector="Button.WhiteTransparentButton:pressed /template/ ContentPresenter">
+		<Setter Property="Foreground" Value="White"/>
+		<Setter Property="Background" Value="#80ffffff" />
+	</Style>
+
+	<Style Selector="Button.SemiTransparentButton">
+		<Setter Property="Background" Value="#99FFFFFF" />
+		<Setter Property="BorderThickness" Value="0" />
+		<Setter Property="Padding" Value="0" />
+	</Style>
+
+	<Style Selector="Button.SemiTransparentButton:pointerover /template/ ContentPresenter">
+		<Setter Property="Background" Value="#ddFFFFFF" />
+	</Style>
+
+	<Style Selector="Button.SemiTransparentButton:pressed /template/ ContentPresenter">
+		<Setter Property="Background" Value="#88FFFFFF" />
+	</Style>
+
+	<Style Selector="ToggleButton.BiliHeaderToggleButton">
+		<Setter Property="Height" Value="36" />
+		<Setter Property="Background" Value="#f2f5f6" />
+		<Setter Property="CornerRadius" Value="18" />
+		<Setter Property="Padding" Value="16,4" />
+		<Setter Property="HorizontalAlignment" Value="Center" />
+		<Setter Property="VerticalAlignment" Value="Center" />
+		<Setter Property="FontSize" Value="16" />
+		<Setter Property="BorderThickness" Value="1" />
+		<Setter Property="VerticalContentAlignment" Value="Center" />
+	</Style>
+	<Style Selector="ToggleButton.BiliHeaderToggleButton /template/ ContentPresenter">
+		<Setter Property="Foreground" Value="#3b3f48"/>
+		<Setter Property="Background" Value="#f2f5f6"/>
+	</Style>
+	<Style Selector="ToggleButton.BiliHeaderToggleButton:pointerover /template/ ContentPresenter">
+		<Setter Property="Foreground" Value="#3b3f48"/>
+		<Setter Property="Background" Value="LightGray"/>
+	</Style>
+	<Style Selector="ToggleButton.BiliHeaderToggleButton:pressed /template/ ContentPresenter">
+		<Setter Property="Foreground" Value="White"/>
+		<Setter Property="Background" Value="#3a3d53"/>
+	</Style>
+	<Style Selector="ToggleButton.BiliHeaderToggleButton:checked /template/ ContentPresenter">
+		<Setter Property="Foreground" Value="White"/>
+		<Setter Property="Background" Value="#292b3a"/>
+	</Style>
+	<Style Selector="ToggleButton.BiliHeaderToggleButton:checked:pointerover /template/ ContentPresenter">
+		<Setter Property="Foreground" Value="White"/>
+		<Setter Property="Background" Value="#3a3d53"/>
+	</Style>
+	<Style Selector="ToggleButton.BiliHeaderToggleButton:checked:pressed /template/ ContentPresenter">
+		<Setter Property="Foreground" Value="White"/>
+		<Setter Property="Background" Value="Black"/>
+	</Style>
+
+	<Style Selector="Button.CardTransparentButton">
+		<Setter Property="Background" Value="Transparent" />
+		<Setter Property="Padding" Value="0" />
+		<Setter Property="BorderBrush" Value="#f0f0f0" />
+		<Setter Property="BorderThickness" Value="2" />
+	</Style>
+	<Style Selector="Button.CardTransparentButton:pointerover /template/ ContentPresenter">
+		<Setter Property="Background" Value="Transparent" />
+		<Setter Property="BorderBrush" Value="#f0f0f0" />
+		<Setter Property="BorderThickness" Value="2" />
+	</Style>
+	<Style Selector="Button.CardTransparentButton:pressed /template/ ContentPresenter">
+		<Setter Property="Background" Value="Transparent" />
+		<Setter Property="BorderBrush" Value="#f0f0f0" />
+		<Setter Property="BorderThickness" Value="2" />
+	</Style>
+
+	<Style Selector="Button.TextButton">
+		<Setter Property="Background" Value="Transparent" />
+		<Setter Property="Padding" Value="0" />
+		<Setter Property="BorderThickness" Value="2" />
+	</Style>
+
+	<Style Selector="Button.TextButton:pointerover /template/ ContentPresenter">
+		<Setter Property="Background" Value="Transparent" />
+	</Style>
+
+	<Style Selector="Button.TextButton:pressed /template/ ContentPresenter">
+		<Setter Property="Background" Value="Transparent" />
+	</Style>
+
+	<Style Selector="Button.PlayOtherButton">
+		<Setter Property="Width" Value="36"/>
+		<Setter Property="Height" Value="36"/>
+		<Setter Property="Background" Value="Transparent"/>
+		<Setter Property="Foreground" Value="DimGray"/>
+		<Setter Property="BorderThickness" Value="0"/>
+		<Setter Property="Padding" Value="0"/>
+		<Setter Property="CornerRadius" Value="18"/>
+	</Style>
+
+	<Style Selector="Button.PlayOtherButton:pressed /template/ ContentPresenter">
+		<Setter Property="Background" Value="#d1d6e1"/>
+	</Style>
+
+	<Style Selector="Button.NextPreviousButton">
+		<Setter Property="Width" Value="36"/>
+		<Setter Property="Height" Value="36"/>
+		<Setter Property="Background" Value="Transparent"/>
+		<Setter Property="Foreground" Value="#6982f9"/>
+		<Setter Property="BorderThickness" Value="0"/>
+		<Setter Property="Padding" Value="0"/>
+		<Setter Property="CornerRadius" Value="18"/>
+	</Style>
+	<Style Selector="Button.NextPreviousButton:pointerover /template/ ContentPresenter">
+		<Setter Property="Foreground" Value="#6982f9"/>
+	</Style>
+	<Style Selector="Button.NextPreviousButton:pressed /template/ ContentPresenter">
+		<Setter Property="Background" Value="#d1d6e1"/>
+	</Style>
+
+	<Style Selector="Button.PlayButton">
+		<Setter Property="Width" Value="44"/>
+		<Setter Property="Height" Value="44"/>
+		<Setter Property="Background" Value="#6982f9"/>
+		<Setter Property="Foreground" Value="White"/>
+		<Setter Property="BorderBrush" Value="White"/>
+		<Setter Property="BorderThickness" Value="2"/>
+		<Setter Property="Padding" Value="0"/>
+		<Setter Property="CornerRadius" Value="22"/>
+	</Style>
+	<Style Selector="Button.PlayButton:pointerover /template/ ContentPresenter">
+		<Setter Property="Background" Value="#576CCF"/>
+		<Setter Property="Foreground" Value="White"/>
+		<Setter Property="BorderBrush" Value="White"/>
+	</Style>
+	<Style Selector="Button.PlayButton:pressed /template/ ContentPresenter">
+		<Setter Property="Background" Value="#576CCF"/>
+		<Setter Property="BorderBrush" Value="#576CCF"/>
+	</Style>
+
+	<Style Selector="Button.VideoPlayOtherButton">
+		<Setter Property="Width" Value="36"/>
+		<Setter Property="Height" Value="36"/>
+		<Setter Property="Background" Value="Transparent"/>
+		<Setter Property="Foreground" Value="#b2b2b2"/>
+		<Setter Property="BorderThickness" Value="0"/>
+		<Setter Property="Padding" Value="0"/>
+		<Setter Property="CornerRadius" Value="18"/>
+	</Style>
+
+	<Style Selector="Button.VideoPlayOtherButton:pressed /template/ ContentPresenter">
+		<!--<Setter Property="Background" Value="#d1d6e1"/>-->
+	</Style>
+
+	<Style Selector="Button.VolumeButton">
+		<Setter Property="Width" Value="72"/>
+		<Setter Property="Height" Value="36"/>
+		<Setter Property="Background" Value="Transparent"/>
+		<Setter Property="BorderBrush" Value="LightGray"/>
+		<Setter Property="BorderThickness" Value="1"/>
+		<Setter Property="Padding" Value="0" />
+		<Setter Property="CornerRadius" Value="18"/>
+		<Setter Property="ClipToBounds" Value="True" />
+	</Style>
+	<Style Selector="Button.VolumeButton /template/ ContentPresenter">
+		<Setter Property="ClipToBounds" Value="True" />
+	</Style>
+	<Style Selector="Button.VolumeButton:pointerover /template/ ContentPresenter">
+		<Setter Property="BorderBrush" Value="LightGray"/>
+		<Setter Property="BorderThickness" Value="1"/>
+	</Style>
+
+	<Style Selector="Button.AlbumPlayButton">
+		<Setter Property="Background" Value="#6BA2FC" />
+		<Setter Property="Foreground" Value="White" />
+		<Setter Property="CornerRadius" Value="4" />
+	</Style>
+
+	<Style Selector="Button.AlbumPlayButton:pointerover /template/ ContentPresenter">
+		<Setter Property="Background" Value="#6BA2FC" />
+		<Setter Property="Foreground" Value="White" />
+	</Style>
+
+	<Style Selector="Button.AlbumPlayButton:pressed /template/ ContentPresenter">
+		<Setter Property="Background" Value="#6BA2FC" />
+		<Setter Property="Foreground" Value="White" />
+	</Style>
+
+	<Style Selector="Button.ListButton">
+		<Setter Property="Padding" Value="12,0" />
+		<Setter Property="CornerRadius" Value="0" />
+		<Setter Property="HorizontalAlignment" Value="Stretch" />
+		<Setter Property="Background" Value="Transparent" />
+	</Style>
+	<Style Selector="Button.ListButton:pressed /template/ ContentPresenter">
+		<Setter Property="Background" Value="#20000000" />
+	</Style>
+
+	<Style Selector="Button.TransparentListButton">
+		<Setter Property="Padding" Value="12,0" />
+		<Setter Property="CornerRadius" Value="0" />
+		<Setter Property="HorizontalAlignment" Value="Stretch" />
+		<Setter Property="Background" Value="Transparent" />
+	</Style>
+	<Style Selector="Button.TransparentListButton:pointerover /template/ ContentPresenter">
+		<Setter Property="Background" Value="Transparent" />
+	</Style>
+	<Style Selector="Button.TransparentListButton:pressed /template/ ContentPresenter">
+		<Setter Property="Background" Value="Transparent" />
+	</Style>
+</Styles>

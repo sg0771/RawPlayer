@@ -1,0 +1,37 @@
+<base:Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="HotPotPlayer2.App"
+             xmlns:local="using:HotPotPlayer2"
+             xmlns:base="using:HotPotPlayer2.Base"
+             xmlns:vm="using:HotPotPlayer2.ViewModels"
+             RequestedThemeVariant="Default">
+             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+
+    <Application.DataTemplates>
+        <vm:MainWindowPageTemplate />
+    </Application.DataTemplates>
+  
+    <Application.Styles>
+        <FluentTheme />
+		<StyleInclude Source="Styles/Fonts.axaml" />
+		<StyleInclude Source="Styles/Labels.axaml" />
+		<StyleInclude Source="Styles/Buttons.axaml" />
+		<StyleInclude Source="Styles/GridViews.axaml" />
+		<StyleInclude Source="Styles/ListViews.axaml" />
+		<StyleInclude Source="Styles/Sliders.axaml" />
+    </Application.Styles>
+
+	<Application.Resources>
+		<FontFamily x:Key="MiSansNormal">/Assets/Fonts/MiSans-Normal.ttf#MiSans</FontFamily>
+		<FontFamily x:Key="MiSansRegular">/Assets/Fonts/MiSans-Regular.ttf#MiSans</FontFamily>
+		<FontFamily x:Key="MiSansMedium">/Assets/Fonts/MiSans-Medium.ttf#MiSans</FontFamily>
+		<FontFamily x:Key="MiSansBold">/Assets/Fonts/MiSans-Bold.ttf#MiSans</FontFamily>
+		<FontFamily x:Key="SegoeIcons">/Assets/Fonts/SegoeIcons.ttf#Segoe Fluent Icons</FontFamily>
+		<FontFamily x:Key="BiliIcons">/Assets/Fonts/bili.ttf#bili</FontFamily>
+
+		<LinearGradientBrush x:Key="PopupBackground" StartPoint="0,0" EndPoint="1,1">
+			<GradientStop Color="#E8E9F2" Offset="0.0" />
+			<GradientStop Color="#CECDDB" Offset="1.0" />
+		</LinearGradientBrush>
+	</Application.Resources>
+</base:Application>

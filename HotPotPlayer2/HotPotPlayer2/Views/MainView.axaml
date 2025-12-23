@@ -1,0 +1,94 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:HotPotPlayer2.ViewModels"
+		     xmlns:cont="using:HotPotPlayer2.Controls"
+			 xmlns:local="using:HotPotPlayer2.Views"
+			 xmlns:pages="using:HotPotPlayer2.Views.Pages"
+			 xmlns:ext="using:HotPotPlayer2.Extensions"
+             x:DataType="vm:MainWindowViewModel"
+			 x:Name="Self"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="HotPotPlayer2.Views.MainView">
+	<Design.DataContext>
+		<!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+		<!--<vm:MainWindowViewModel/>-->
+	</Design.DataContext>
+
+	<Grid x:Name="Root">
+		<Grid x:Name="ContentRoot" ColumnDefinitions="64, *">
+			<cont:MainSidebar SelectedPageName="{Binding SelectedPageName, Mode=TwoWay}"
+							  IsBackEnable="{Binding IsBackEnable}"
+							  OnBackClick="OnBackClick"
+							  SelectedPageNameChanged="SelectedPageNameChanged"
+							  IsPlayBarVisible="{Binding MusicPlayer.IsPlayBarVisible}"
+							  CurrentPlaying="{Binding MusicPlayer.CurrentPlaying}"
+							  ShowPlayBarCommand="{Binding MusicPlayer.ShowPlayBarCommand}"
+							  />
+
+			<TransitioningContentControl Grid.Column="1" Content="{Binding CurrentPage}" />
+		</Grid>
+
+		<cont:CurrentPlayListBar x:Name="CurrentPlayListBar" 
+								 RenderTransform="translateX(400px)"
+								 IsVisible="False"
+							     ext:InteractiveExtensions.IsVisible="{Binding MusicPlayer.IsPlayListBarVisible}"
+								 ext:InteractiveExtensions.ShowTransform="translateX(0px)"
+								 ext:InteractiveExtensions.HideTransform="translateX(400px)"
+								 >
+			<cont:CurrentPlayListBar.Transitions>
+				<Transitions>
+					<TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.4" Easing="QuinticEaseOut"/>
+				</Transitions>
+			</cont:CurrentPlayListBar.Transitions>
+		</cont:CurrentPlayListBar>
+
+		<cont:PlayBar x:Name="PlayBar"
+					  VerticalAlignment="Bottom"
+                      HorizontalAlignment="Stretch"
+					  Margin="180,0,124,16"
+					  Opacity="{Binding MusicPlayer.IsPlayBarVisible, Converter={x:Static local:MainViewConverters.GetOpacity}}"
+					  RenderTransform="translateY(80px)"
+					  IsVisible="False"
+					  ext:InteractiveExtensions.IsVisible="{Binding MusicPlayer.IsPlayBarVisible}"
+					  ext:InteractiveExtensions.ShowTransform="translateY(0px)"
+					  ext:InteractiveExtensions.HideTransform="translateY(80px)"
+					  >
+			<cont:PlayBar.Transitions>
+				<Transitions>
+					<DoubleTransition Property="Opacity" Duration="0:0:0.8" Easing="QuarticEaseOut" />	
+					<TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.8" Easing="QuarticEaseOut"/>
+				</Transitions>
+			</cont:PlayBar.Transitions>
+		</cont:PlayBar>
+
+		<pages:VideoPlayPage x:Name="VideoPlay"
+							 HorizontalAlignment="{Binding VideoPlayer.VisualState, Converter={x:Static local:MainViewConverters.GetVideoPlayHorizontalAlignment}}"
+							 VerticalAlignment="{Binding VideoPlayer.VisualState, Converter={x:Static local:MainViewConverters.GetVideoPlayVerticalAlignment}}"
+						     Margin="{Binding VideoPlayer.VisualState, Converter={x:Static local:MainViewConverters.GetVideoPlayMargin}}"
+						     Width="{Binding VideoPlayer.VisualState, Converter={x:Static local:MainViewConverters.GetVideoPlayWidth}}"
+						     Height="{Binding VideoPlayer.VisualState, Converter={x:Static local:MainViewConverters.GetVideoPlayHeight}}"
+							 IsVisible="{Binding VideoPlayer.VisualState, Converter={x:Static local:MainViewConverters.GetVideoPlayVisible}}"
+							 >
+
+		</pages:VideoPlayPage>
+
+		<cont:Toast x:Name="Toast" 
+					VerticalAlignment="Top" 
+					HorizontalAlignment="Stretch" 
+					MaxWidth="480" Margin="240,40"
+					RenderTransform="translateY(-250px)"
+					ext:InteractiveExtensions.IsVisible="{Binding #Self.IsToastVisible}"
+					ext:InteractiveExtensions.ShowTransform="translateY(0px)"
+					ext:InteractiveExtensions.HideTransform="translateY(-250px)"
+					>
+			<cont:Toast.Transitions>
+				<Transitions>
+					<TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.4" Easing="BackEaseInOut"/>
+				</Transitions>
+			</cont:Toast.Transitions>
+		</cont:Toast>
+	</Grid>
+</UserControl>
