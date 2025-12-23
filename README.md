@@ -1,2 +1,5 @@
 # RawPlayer
-yuv/pcm player using  Avalonia  C#
+Avolania 
+Raw Data Player
+yuv player using skia
+pcm player using SDL2

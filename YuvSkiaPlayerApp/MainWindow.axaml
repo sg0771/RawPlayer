@@ -1,0 +1,42 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:YuvSkiaPlayerApp"
+        x:Class="YuvSkiaPlayerApp.MainWindow"
+        Title="YUV Skia Player (.NET 8 - unsafe)" Width="1000" Height="700">
+  <DockPanel>
+    <StackPanel Orientation="Vertical" DockPanel.Dock="Right" Width="340" Margin="8">
+      <TextBlock Text="YUV Skia Player (unsafe/pinned)" FontSize="16" Margin="6"/>
+      <StackPanel Orientation="Horizontal" Margin="6">
+        <TextBox x:Name="FilePathBox" Width="220" Watermark="请选择 YUV 文件" />
+        <Button x:Name="BrowseBtn" Content="Browse" Margin="6,0,0,0" />
+      </StackPanel>
+
+      <StackPanel Orientation="Horizontal" Margin="6">
+        <TextBlock Text="Width:" VerticalAlignment="Center" Width="55" />
+        <TextBox x:Name="WidthBox" Width="80" Text="352" />
+        <TextBlock Text="Height:" VerticalAlignment="Center" Margin="8,0,0,0" Width="60"/>
+        <TextBox x:Name="HeightBox" Width="80" Text="288" />
+      </StackPanel>
+
+      <StackPanel Orientation="Horizontal" Margin="6">
+        <TextBlock Text="FPS:" VerticalAlignment="Center" Width="55" />
+        <TextBox x:Name="FpsBox" Width="80" Text="25" />
+        <CheckBox x:Name="LoopCheck" Content="Loop" Margin="12,0,0,0" IsChecked="True" />
+      </StackPanel>
+
+      <StackPanel Orientation="Horizontal" Margin="6">
+        <Button x:Name="PlayBtn" Content="Play" Width="90" />
+        <Button x:Name="PauseBtn" Content="Pause" Width="90" Margin="8,0,0,0" />
+        <Button x:Name="StopBtn" Content="Stop" Width="90" Margin="8,0,0,0" />
+      </StackPanel>
+
+      <TextBlock Text="说明" Margin="6,14,6,2" FontWeight="Bold"/>
+      <TextBlock Text="- 使用 unsafe + pinned 直接写入 WriteableBitmap 的本机内存，减少中间拷贝，提高性能。" TextWrapping="Wrap" Margin="6,0,6,0"/>
+      <TextBlock Text="- 假定 YUV420p（Y...U...V）。" TextWrapping="Wrap" Margin="6,4,6,0"/>
+    </StackPanel>
+
+    <Border Background="#FF111111" Margin="8" CornerRadius="4">
+      <local:SkiaVideoPlayer x:Name="Player" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+    </Border>
+  </DockPanel>
+</Window>
